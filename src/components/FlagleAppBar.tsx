@@ -6,7 +6,6 @@ import {
   IconButton,
   List,
   ListItemButton,
-  ListItem,
   ListItemIcon,
   ListItemText,
   Toolbar,
@@ -15,13 +14,31 @@ import {
 import {
   Menu as MenuIcon,
   KeyboardDoubleArrowLeft as KeyboardDoubleArrowLeftIcon,
+  Home as HomeIcon,
+  Flag as FlagIcon,
+  Info as InfoIcon,
+  Send as SendIcon,
+  Policy as PolicyIcon,
 } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+import { GAME_URL, ROOT_URL } from "../utils/urls";
+import { useTranslation } from "react-i18next";
 
 export const FlagleAppBar: React.FC = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+
+  const items = [
+    { text: "Home", path: ROOT_URL, icon: <HomeIcon /> },
+    { text: t("app.newGame"), path: GAME_URL, icon: <FlagIcon /> },
+    { text: "About", path: "#", icon: <InfoIcon /> },
+    { text: "Contact", path: "#", icon: <SendIcon /> },
+    { text: "GCU", path: "#", icon: <PolicyIcon /> },
+  ];
 
   return (
-    <AppBar variant="outlined" position="static">
+    <AppBar position="static">
       <Toolbar>
         <IconButton
           edge="start"
@@ -31,7 +48,7 @@ export const FlagleAppBar: React.FC = () => {
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6">The title</Typography>
+        <Typography variant="h6">{t("app.title")}</Typography>
 
         <Drawer
           variant="temporary"
@@ -44,26 +61,25 @@ export const FlagleAppBar: React.FC = () => {
               <ListItemIcon>
                 <KeyboardDoubleArrowLeftIcon />
               </ListItemIcon>
-              <ListItemText primary="Close" />
+              <ListItemText primary={t("app.close")} />
             </ListItemButton>
 
             <Divider />
 
-            <ListItem>
-              <ListItemText primary="Home" />
-            </ListItem>
-
-            <ListItem>
-              <ListItemText primary="About" />
-            </ListItem>
-
-            <ListItem>
-              <ListItemText primary="Contact" />
-            </ListItem>
-
-            <ListItem>
-              <ListItemText primary="ServicesLOOOOOOOOOOOOOONG" />
-            </ListItem>
+            {items.map((item, index) => {
+              return (
+                <ListItemButton
+                  key={index}
+                  onClick={() => {
+                    setIsDrawerOpen(false);
+                    navigate(item.path);
+                  }}
+                >
+                  <ListItemIcon>{item.icon}</ListItemIcon>
+                  <ListItemText primary={item.text} />
+                </ListItemButton>
+              );
+            })}
           </List>
         </Drawer>
       </Toolbar>

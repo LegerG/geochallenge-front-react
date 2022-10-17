@@ -1,0 +1,10 @@
+{
+  "app": {
+    "title": "Flagle",
+    "close": "Fermer",
+    "newGame": "Nouvelle partie",
+    "about": "À propos",
+    "contact": "Contacte",
+    "tou": "Conditions d'utilisation"
+  }
+}

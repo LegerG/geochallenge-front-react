@@ -1,8 +1,14 @@
 import React from "react";
-import { FlagleAppBar } from "./components/FlagleAppBar";
+import { Outlet } from "react-router-dom";
+import { FlagleAppBar } from "./components";
 
 function App() {
-  return <FlagleAppBar />;
+  return (
+    <>
+      <FlagleAppBar />
+      <Outlet />
+    </>
+  );
 }
 
 export default App;

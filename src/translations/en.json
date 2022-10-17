@@ -1,0 +1,10 @@
+{
+  "app": {
+    "title": "Flagle",
+    "close": "Close",
+    "newGame": "New game",
+    "about": "About",
+    "contact": "Contact",
+    "tou": "Terms of use"
+  }
+}

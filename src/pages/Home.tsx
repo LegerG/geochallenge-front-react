@@ -1,4 +1,10 @@
 import React from "react";
+
 export const Home: React.FC = () => {
-  return <p>Bienvenue</p>;
+  console.log("Home");
+  return (
+    <>
+      <p>HOME</p>
+    </>
+  );
 };
