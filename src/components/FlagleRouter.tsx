@@ -9,6 +9,9 @@ export const FlagleRouter: React.FC = () => {
     {
       path: ROOT_URL,
       element: <App />,
+      action: () => {
+        console.log("ROOT_URL");
+      },
       children: [
         {
           index: true,

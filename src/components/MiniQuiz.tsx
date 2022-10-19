@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Button, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useGetTerritoryNamesQuery } from "../utils/territory.api";
-import { FlagImage } from "./FlagImage";
+import { FlagImage } from "./";
 import { TerritoryName } from "../models/country";
 
 const getRandomElement = <T extends unknown>(array: T[]): T => {
@@ -35,7 +35,7 @@ export const MiniQuiz: React.FC = (props) => {
   });
   const [choices, setChoices] = React.useState<TerritoryName[]>([]);
   const [correctAnswer, setCorrectAnswer] = React.useState<TerritoryName>();
-  const [response, setResponse] = React.useState<TerritoryName>();
+  const [answer, setAnswer] = React.useState<TerritoryName>();
 
   const gapSize = "0.5rem";
 
@@ -55,14 +55,14 @@ export const MiniQuiz: React.FC = (props) => {
   }, [data]);
 
   React.useEffect(() => {
-    if (response !== undefined) {
+    if (answer !== undefined) {
       setTimeout(() => {
-        setResponse(undefined);
+        setAnswer(undefined);
       }, 500);
     } else {
       resetMiniQuiz();
     }
-  }, [response]);
+  }, [answer]);
 
   return (
     <Box
@@ -101,10 +101,10 @@ export const MiniQuiz: React.FC = (props) => {
         {choices.map((choice) => (
           <Button
             key={choice.code}
-            variant={response === choice ? "contained" : "outlined"}
-            color={getButtonColor(choice, correctAnswer, response)}
+            variant={answer === choice ? "contained" : "outlined"}
+            color={getButtonColor(choice, correctAnswer, answer)}
             onClick={() => {
-              setResponse(choice);
+              setAnswer(choice);
             }}
           >
             {choice.name}
