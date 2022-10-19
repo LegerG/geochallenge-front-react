@@ -1,0 +1,20 @@
+{
+  "app": {
+    "title": "Flagle",
+    "close": "Cerca",
+    "home": "Hogar",
+    "newGame": "Nueva Partida",
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "tou": "Términos de Uso",
+    "language": "Idioma",
+    "languageMenu": {
+      "en": "English",
+      "fr": "Français",
+      "es": "Español"
+    }
+  },
+  "home": {
+    "miniQuizTitle": "Mini Cuestionario"
+  }
+}

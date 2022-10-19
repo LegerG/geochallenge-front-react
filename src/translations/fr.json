@@ -2,9 +2,19 @@
   "app": {
     "title": "Flagle",
     "close": "Fermer",
+    "home": "Accueil",
     "newGame": "Nouvelle partie",
     "about": "À propos",
-    "contact": "Contacte",
-    "tou": "Conditions d'utilisation"
+    "contact": "Contact",
+    "tou": "Conditions d'utilisation",
+    "language": "Langue",
+    "languageMenu": {
+      "en": "English",
+      "fr": "Français",
+      "es": "Español"
+    }
+  },
+  "home": {
+    "miniQuizTitle": "Mini Quiz"
   }
 }
