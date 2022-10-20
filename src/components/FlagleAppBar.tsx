@@ -28,7 +28,7 @@ import {
   Policy as PolicyIcon,
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import { GAME_URL, ROOT_URL } from "../utils/urls";
+import { ABOUT_URL, GAME_URL, ROOT_URL } from "../utils/urls";
 import { useTranslation } from "react-i18next";
 import { LanguageButtonMenu } from "./LanguageButtonMenu";
 
@@ -40,7 +40,7 @@ export const FlagleAppBar: React.FC = () => {
   const items = [
     { text: t("app.home"), path: ROOT_URL, icon: <HomeIcon /> },
     { text: t("app.newGame"), path: GAME_URL, icon: <FlagIcon /> },
-    { text: t("app.about"), path: "#", icon: <InfoIcon />, disabled: true },
+    { text: t("app.about"), path: ABOUT_URL, icon: <InfoIcon /> },
     { text: t("app.contact"), path: "#", icon: <SendIcon />, disabled: true },
     { text: t("app.tou"), path: "#", icon: <PolicyIcon />, disabled: true },
   ];

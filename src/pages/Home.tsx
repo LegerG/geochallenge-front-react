@@ -23,7 +23,7 @@ export const Home: React.FC = () => {
         }}
       >
         <Button variant="contained" color="primary">
-          {t("home.startNewGame")}
+          {t("app.newGame")}
         </Button>
       </Grid>
     </Grid>

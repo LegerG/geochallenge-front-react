@@ -5,7 +5,7 @@ interface GameStatisticProps {
   correctAnswers: number;
   wrongAnswers: number;
   currentAnswerIndex: number;
-  totalAnswer: number;
+  totalAnswer?: number;
 }
 
 export const GameStatistic: React.FC<GameStatisticProps> = (props) => {
@@ -21,8 +21,15 @@ export const GameStatistic: React.FC<GameStatisticProps> = (props) => {
       <Typography variant="h6" sx={{ flexGrow: 1 }}>
         {current}/{total}
       </Typography>
-      <Typography variant="h6" color="success" sx={{ alignSelf: "flex-end" }}>
+      <Typography
+        variant="h6"
+        color="success.main"
+        sx={{ alignSelf: "flex-end" }}
+      >
         {correctAnswers}
+      </Typography>
+      <Typography variant="h6" sx={{ alignSelf: "flex-end" }}>
+        /
       </Typography>
       <Typography variant="h6" color="error" sx={{ alignSelf: "flex-end" }}>
         {wrongAnswers}

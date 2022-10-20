@@ -16,5 +16,8 @@
   },
   "home": {
     "miniQuizTitle": "Mini Quiz"
+  },
+  "game": {
+    "countrySearch": "Pays"
   }
 }

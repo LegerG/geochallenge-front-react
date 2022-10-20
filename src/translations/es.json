@@ -16,5 +16,8 @@
   },
   "home": {
     "miniQuizTitle": "Mini Cuestionario"
+  },
+  "game": {
+    "countrySearch": "País"
   }
 }

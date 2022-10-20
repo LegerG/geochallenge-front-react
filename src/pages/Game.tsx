@@ -1,4 +1,10 @@
-import { Autocomplete, TextField, Box } from "@mui/material";
+import {
+  Autocomplete,
+  TextField,
+  Box,
+  CircularProgress,
+  Grid,
+} from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { FlagImage, GameStatistic } from "../components";
@@ -36,7 +42,9 @@ export const Game: React.FC = () => {
   return (
     <Box sx={{ padding: "0.5rem" }}>
       {!gameResult.data || !namesResult.data ? (
-        <div>{t("game.laoding")}</div>
+        <Grid container justifyContent="center">
+          <CircularProgress color="inherit" />
+        </Grid>
       ) : (
         <div>
           <GameStatistic
@@ -55,7 +63,7 @@ export const Game: React.FC = () => {
             renderInput={(params) => (
               <TextField
                 {...params}
-                label={t("game.country")}
+                label={t("game.countrySearch")}
                 variant="outlined"
                 autoFocus
                 InputProps={{
@@ -69,6 +77,7 @@ export const Game: React.FC = () => {
                 }}
               />
             )}
+            autoComplete
             inputValue={value}
             onChange={handleAnswer}
             sx={{ marginTop: "0.5rem" }}
