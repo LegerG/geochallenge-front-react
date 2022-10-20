@@ -19,5 +19,9 @@
   },
   "game": {
     "countrySearch": "Country"
+  },
+  "about": {
+    "aboutText": "This application was developed by Gwenaël Léger.",
+    "thanks": "Thanks to:"
   }
 }

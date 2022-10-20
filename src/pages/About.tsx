@@ -6,10 +6,15 @@ export const About: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <Box>
-      <Typography variant="h4">{t("app.about")}</Typography>
-      <Typography variant="body1">{t("app.aboutText")}</Typography>
-      <Typography variant="h4">{t("about.thanks")}</Typography>
+    <Box sx={{ padding: "0.5rem" }}>
+      <Typography variant="h5" sx={{ mt: "0.5rem" }}>
+        {t("app.about")}
+      </Typography>
+      <Typography>{t("about.aboutText")}</Typography>
+
+      <Typography variant="h5" sx={{ mt: "0.5rem" }}>
+        {t("about.thanks")}
+      </Typography>
       <a
         href="https://www.flaticon.com/free-icon/flag_473724?term=flag&related_id=473724"
         title="flag icons"
