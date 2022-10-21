@@ -5,15 +5,23 @@ import {
   Box,
   CircularProgress,
   Grid,
+  Button,
 } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { FlagImage, GameStatistic } from "../components";
+import { useNavigate } from "react-router-dom";
+import {
+  FlagImage,
+  GameStatistic,
+  ResultTextOver as AnswerPopover,
+} from "../components";
 import { TerritoryName } from "../models/country";
 import {
   useGetNewGameQuery,
   useGetTerritoryNamesQuery,
+  useGetTrainingGameQuery,
 } from "../utils/territory.api";
+import { ROOT_URL } from "../utils/urls";
 
 export const Game: React.FC = () => {
   const [index, setIndex] = React.useState(0);
@@ -22,9 +30,13 @@ export const Game: React.FC = () => {
   const [currentAnswerIsCorrect, setCurrentAnswerIsCorrect] =
     React.useState<boolean>();
   const [value, setValue] = React.useState<string>("");
+  const [isGameEnded, setIsGameEnded] = React.useState(false);
 
   const { t, i18n } = useTranslation();
-  const gameResult = useGetNewGameQuery();
+  const navigate = useNavigate();
+  const gameResult = useGetTrainingGameQuery({
+    size: 1,
+  });
   const namesResult = useGetTerritoryNamesQuery({ lang: i18n.language });
 
   const handleAnswer = (_, value: TerritoryName | null) => {
@@ -41,20 +53,16 @@ export const Game: React.FC = () => {
     }
 
     setTimeout(() => {
-      setIndex(index + 1);
-      setValue("");
-      setCurrentAnswerIsCorrect(undefined);
+      if (index < gameResult?.data?.length - 1) {
+        setIndex(index + 1);
+        setValue("");
+        setCurrentAnswerIsCorrect(undefined);
+        return;
+      }
+
+      setIsGameEnded(true);
     }, 1000);
   };
-
-  React.useEffect(() => {
-    if (gameResult && namesResult && gameResult.data && namesResult.data) {
-      console.log(currentAnswerIsCorrect);
-      console.log(
-        namesResult.data.find((n) => n.code === gameResult.data[index].code)
-      );
-    }
-  }, [currentAnswerIsCorrect]);
 
   return (
     <Box sx={{ padding: "0.5rem" }}>
@@ -67,51 +75,71 @@ export const Game: React.FC = () => {
           <GameStatistic
             correctAnswers={correctAnswers}
             wrongAnswers={wrongAnswers}
-            currentAnswerIndex={index}
+            currentAnswerIndex={index + 1}
             totalAnswer={gameResult.data.length ?? 0}
           />
 
           <FlagImage
             code={gameResult.data[index].code}
-            answerValue={
-              namesResult.data.find(
-                (n) => n.code === gameResult?.data[index].code
-              )?.name ?? ""
+            popoverElement={
+              isGameEnded ? (
+                <> DONE </>
+              ) : (
+                <AnswerPopover
+                  answerValue={
+                    namesResult.data.find(
+                      (n) => n.code === gameResult?.data[index].code
+                    )?.name ?? ""
+                  }
+                  answerIsCorrect={currentAnswerIsCorrect ?? false}
+                />
+              )
             }
-            answerIsCorrect={currentAnswerIsCorrect}
+            popoverOpen={currentAnswerIsCorrect !== undefined || isGameEnded}
           />
-
-          <Autocomplete
-            options={namesResult.data}
-            renderOption={(props, option) => <li {...props}>{option.name}</li>}
-            getOptionLabel={(option) => option.name}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label={t("game.countrySearch")}
-                variant="outlined"
-                autoFocus
-                InputProps={{
-                  ...params.InputProps,
-                  type: "search",
-                  onInput(event: React.ChangeEvent<HTMLInputElement>) {
-                    if (event) {
-                      setValue(event.target.value);
-                    }
-                  },
-                }}
-              />
-            )}
-            autoComplete
-            inputValue={value}
-            onChange={handleAnswer}
-            sx={{ marginTop: "0.5rem" }}
-            autoSelect
-            fullWidth
-            autoHighlight
-            clearIcon={null}
-            clearOnEscape
-          />
+          {isGameEnded ? (
+            <Button
+              onClick={() => {
+                navigate(ROOT_URL);
+              }}
+            >
+              {t("game.comebackHome")}
+            </Button>
+          ) : (
+            <Autocomplete
+              options={namesResult.data}
+              renderOption={(props, option) => (
+                <li {...props}>{option.name}</li>
+              )}
+              getOptionLabel={(option) => option.name}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label={t("game.countrySearch")}
+                  variant="outlined"
+                  autoFocus
+                  InputProps={{
+                    ...params.InputProps,
+                    type: "search",
+                    onInput(event: React.ChangeEvent<HTMLInputElement>) {
+                      if (event) {
+                        setValue(event.target.value);
+                      }
+                    },
+                  }}
+                />
+              )}
+              autoComplete
+              inputValue={value}
+              onChange={handleAnswer}
+              sx={{ marginTop: "0.5rem" }}
+              autoSelect
+              fullWidth
+              autoHighlight
+              clearIcon={null}
+              clearOnEscape
+            />
+          )}
         </div>
       )}
     </Box>

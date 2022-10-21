@@ -5,12 +5,12 @@ import { ResultTextOver } from "./";
 interface FlagImageProps {
   code?: string;
   width?: 20 | 40 | 80 | 160 | 320 | 640 | 1280 | 2560;
-  answerValue: string;
-  answerIsCorrect?: boolean;
+  popoverElement?: React.ReactNode;
+  popoverOpen?: boolean;
 }
 
 export const FlagImage: React.FC<FlagImageProps> = (props) => {
-  const { code, width = 640, answerValue, answerIsCorrect } = props;
+  const { code, width = 640, popoverOpen, popoverElement } = props;
 
   const imgStyle = {
     position: "absolute",
@@ -37,17 +37,14 @@ export const FlagImage: React.FC<FlagImageProps> = (props) => {
           src={`https://flagcdn.com/w${width}/${code}.png`}
         />
       )}
-      {answerIsCorrect !== undefined ? (
+      {popoverOpen ? (
         <Grid
           sx={{ ...imgStyle, zIndex: 1, display: "flex" }}
           container
           alignItems="center"
           justifyContent="center"
         >
-          <ResultTextOver
-            answerValue={answerValue}
-            answerIsCorrect={answerIsCorrect}
-          />
+          {popoverElement}
         </Grid>
       ) : null}
     </Box>

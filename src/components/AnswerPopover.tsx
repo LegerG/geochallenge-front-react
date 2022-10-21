@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import { ResponseIcon } from "./";
+import { ResponseIcon } from ".";
 
 interface ResultTextOverProps {
   answerValue: string;
