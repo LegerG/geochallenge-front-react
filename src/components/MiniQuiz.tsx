@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Skeleton, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useGetTerritoryNamesQuery } from "../utils/territory.api";
 import { FlagImage } from "./";
@@ -28,7 +28,7 @@ const getButtonColor = (
   return "error";
 };
 
-export const MiniQuiz: React.FC = (props) => {
+export const MiniQuiz: React.FC = () => {
   const { t, i18n } = useTranslation();
   const { data } = useGetTerritoryNamesQuery({
     lang: i18n.language,
@@ -98,18 +98,22 @@ export const MiniQuiz: React.FC = (props) => {
           },
         }}
       >
-        {choices.map((choice) => (
-          <Button
-            key={choice.code}
-            variant={answer === choice ? "contained" : "outlined"}
-            color={getButtonColor(choice, correctAnswer, answer)}
-            onClick={() => {
-              setAnswer(choice);
-            }}
-          >
-            {choice.name}
-          </Button>
-        ))}
+        {data
+          ? choices.map((choice) => (
+              <Button
+                key={choice.code}
+                variant={answer === choice ? "contained" : "outlined"}
+                color={getButtonColor(choice, correctAnswer, answer)}
+                onClick={() => {
+                  setAnswer(choice);
+                }}
+              >
+                {choice.name}
+              </Button>
+            ))
+          : ["", "", ""].map((_, index) => (
+              <Skeleton key={index} variant="rectangular" height="45px" />
+            ))}
       </Box>
     </Box>
   );

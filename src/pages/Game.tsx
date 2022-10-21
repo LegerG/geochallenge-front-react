@@ -1,3 +1,4 @@
+import { AnchorSharp } from "@mui/icons-material";
 import {
   Autocomplete,
   TextField,
@@ -18,6 +19,8 @@ export const Game: React.FC = () => {
   const [index, setIndex] = React.useState(0);
   const [correctAnswers, setCorrectAnswers] = React.useState(0);
   const [wrongAnswers, setWrongAnswers] = React.useState(0);
+  const [currentAnswerIsCorrect, setCurrentAnswerIsCorrect] =
+    React.useState<boolean>();
   const [value, setValue] = React.useState<string>("");
 
   const { t, i18n } = useTranslation();
@@ -28,16 +31,30 @@ export const Game: React.FC = () => {
     if (!gameResult.data || !value) {
       return;
     }
+    const isCorrect = value.code === gameResult.data[index].code;
+    setCurrentAnswerIsCorrect(isCorrect);
 
-    if (value.code === gameResult.data[index].code) {
+    if (isCorrect) {
       setCorrectAnswers(correctAnswers + 1);
     } else {
       setWrongAnswers(wrongAnswers + 1);
     }
 
-    setIndex(index + 1);
-    setValue("");
+    setTimeout(() => {
+      setIndex(index + 1);
+      setValue("");
+      setCurrentAnswerIsCorrect(undefined);
+    }, 1000);
   };
+
+  React.useEffect(() => {
+    if (gameResult && namesResult && gameResult.data && namesResult.data) {
+      console.log(currentAnswerIsCorrect);
+      console.log(
+        namesResult.data.find((n) => n.code === gameResult.data[index].code)
+      );
+    }
+  }, [currentAnswerIsCorrect]);
 
   return (
     <Box sx={{ padding: "0.5rem" }}>
@@ -54,7 +71,15 @@ export const Game: React.FC = () => {
             totalAnswer={gameResult.data.length ?? 0}
           />
 
-          <FlagImage code={gameResult.data[index].code} />
+          <FlagImage
+            code={gameResult.data[index].code}
+            answerValue={
+              namesResult.data.find(
+                (n) => n.code === gameResult?.data[index].code
+              )?.name ?? ""
+            }
+            answerIsCorrect={currentAnswerIsCorrect}
+          />
 
           <Autocomplete
             options={namesResult.data}
