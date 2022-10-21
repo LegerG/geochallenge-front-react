@@ -13,21 +13,30 @@ export const AnswerPopover: React.FC<AnswerPopoverProps> = (props) => {
 
   return (
     <PopoverWrapper>
-      <ResponseEmoji answerIsCorrect={answerIsCorrect} />
-
-      <Typography
-        variant="body1"
-        color={answerIsCorrect ? "success.main" : "error"}
+      <Box
         sx={{
-          fontWeight: "bold",
-          ml: 1,
-          mr: 1,
+          display: "flex",
+          direction: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
         }}
       >
-        {answerValue}
-      </Typography>
+        <ResponseEmoji answerIsCorrect={answerIsCorrect} />
 
-      <ResponseEmoji answerIsCorrect={answerIsCorrect} />
+        <Typography
+          variant="body1"
+          color={answerIsCorrect ? "success.main" : "error"}
+          sx={{
+            fontWeight: "bold",
+            ml: 1,
+            mr: 1,
+          }}
+        >
+          {answerValue}
+        </Typography>
+
+        <ResponseEmoji answerIsCorrect={answerIsCorrect} />
+      </Box>
     </PopoverWrapper>
   );
 };

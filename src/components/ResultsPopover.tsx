@@ -14,20 +14,28 @@ export const ResultsPopover: React.FC<ResultsPopoverProps> = (props) => {
   const { t } = useTranslation();
 
   return (
-    <PopoverWrapper direction="column">
-      <Typography variant="body1" sx={{ fontWeight: "bold", mr: 1 }}>
-        {t("game.endGameTitle")}
+    <PopoverWrapper>
+      <Typography variant="h6" sx={{ fontWeight: "bold", mr: 1 }}>
+        {t("game.endGame.title")}
       </Typography>
 
       <Typography
         variant="body1"
         color="success.main"
+        paragraph
         sx={{ fontWeight: "bold" }}
       >
-        {t("game.correctAnswer")} {correctAnswers}
+        {t("game.endGame.correctAnswers", { correctAnswers })}
       </Typography>
-      <Typography variant="body1" color="error" sx={{ fontWeight: "bold" }}>
-        {t("game.wrongAnswer")} {wrongAnswers}
+
+      <Typography paragraph color="error" sx={{ fontWeight: "bold" }}>
+        {t("game.endGame.wrongAnswers", { wrongAnswers })}
+      </Typography>
+
+      <Typography paragraph sx={{ fontWeight: "bold" }}>
+        {t("game.endGame.percentage", {
+          percentage: (100 * correctAnswers) / (correctAnswers + wrongAnswers),
+        })}
       </Typography>
     </PopoverWrapper>
   );

@@ -18,7 +18,14 @@
     "miniQuizTitle": "Mini Cuestionario"
   },
   "game": {
-    "countrySearch": "País"
+    "countrySearch": "País",
+    "comebackHome": "Retorno al inicio",
+    "endGame": {
+      "title": "Resultados",
+      "correctAnswers": "Respuestas correctas: {{correctAnswers}}",
+      "wrongAnswers": "Respuestas incorrectas: {{wrongAnswers}}",
+      "percentage": "Porcentaje: {{percentage, number(minimumFractionDigits: 0)}}%"
+    }
   },
   "about": {
     "aboutText": "Esta aplicación fue desarrollada por Gwenaël Léger.",

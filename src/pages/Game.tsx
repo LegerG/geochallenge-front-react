@@ -72,7 +72,13 @@ export const Game: React.FC = () => {
           <CircularProgress color="inherit" />
         </Grid>
       ) : (
-        <div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
           <GameStatistic
             correctAnswers={correctAnswers}
             wrongAnswers={wrongAnswers}
@@ -86,7 +92,7 @@ export const Game: React.FC = () => {
               isGameEnded ? (
                 <ResultsPopover
                   correctAnswers={correctAnswers}
-                  wrongAnswer={wrongAnswers}
+                  wrongAnswers={wrongAnswers}
                 />
               ) : (
                 <AnswerPopover
@@ -106,6 +112,8 @@ export const Game: React.FC = () => {
               onClick={() => {
                 navigate(ROOT_URL);
               }}
+              variant="contained"
+              sx={{ mt: 2 }}
             >
               {t("game.comebackHome")}
             </Button>
@@ -136,7 +144,7 @@ export const Game: React.FC = () => {
               autoComplete
               inputValue={value}
               onChange={handleAnswer}
-              sx={{ marginTop: "0.5rem" }}
+              sx={{ mt: 2 }}
               autoSelect
               fullWidth
               autoHighlight
