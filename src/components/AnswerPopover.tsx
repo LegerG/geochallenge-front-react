@@ -1,29 +1,19 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import { ResponseIcon } from ".";
+import { ResponseEmoji as ResponseEmoji } from ".";
+import { PopoverWrapper } from "./PopoverWrapper";
 
-interface ResultTextOverProps {
+interface AnswerPopoverProps {
   answerValue: string;
   answerIsCorrect: boolean;
 }
 
-export const ResultTextOver: React.FC<ResultTextOverProps> = (props) => {
+export const AnswerPopover: React.FC<AnswerPopoverProps> = (props) => {
   const { answerValue, answerIsCorrect } = props;
 
   return (
-    <Box
-      sx={(theme) => ({
-        padding: theme.spacing(1),
-        borderRadius: theme.shape.borderRadius,
-        shadowBox: theme.shadows[2],
-        border: `1px solid ${theme.palette.divider}`,
-        display: "flex",
-        alignItems: "center",
-        backgroundColor: "white",
-        justifyContent: "space-between",
-      })}
-    >
-      <ResponseIcon answerIsCorrect={answerIsCorrect} />
+    <PopoverWrapper>
+      <ResponseEmoji answerIsCorrect={answerIsCorrect} />
 
       <Typography
         variant="body1"
@@ -37,7 +27,7 @@ export const ResultTextOver: React.FC<ResultTextOverProps> = (props) => {
         {answerValue}
       </Typography>
 
-      <ResponseIcon answerIsCorrect={answerIsCorrect} />
-    </Box>
+      <ResponseEmoji answerIsCorrect={answerIsCorrect} />
+    </PopoverWrapper>
   );
 };

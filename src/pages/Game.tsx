@@ -13,7 +13,8 @@ import { useNavigate } from "react-router-dom";
 import {
   FlagImage,
   GameStatistic,
-  ResultTextOver as AnswerPopover,
+  AnswerPopover as AnswerPopover,
+  ResultsPopover,
 } from "../components";
 import { TerritoryName } from "../models/country";
 import {
@@ -83,7 +84,10 @@ export const Game: React.FC = () => {
             code={gameResult.data[index].code}
             popoverElement={
               isGameEnded ? (
-                <> DONE </>
+                <ResultsPopover
+                  correctAnswers={correctAnswers}
+                  wrongAnswer={wrongAnswers}
+                />
               ) : (
                 <AnswerPopover
                   answerValue={

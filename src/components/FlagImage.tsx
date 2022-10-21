@@ -1,6 +1,6 @@
 import React, { CSSProperties } from "react";
 import { Skeleton, Box, Dialog, Typography, Grid } from "@mui/material";
-import { ResultTextOver } from "./";
+import { AnswerPopover } from "./";
 
 interface FlagImageProps {
   code?: string;

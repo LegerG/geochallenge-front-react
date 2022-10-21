@@ -5,7 +5,7 @@ interface ResponseIconProps {
   answerIsCorrect: boolean;
 }
 
-export const ResponseIcon: React.FC<ResponseIconProps> = (props) => {
+export const ResponseEmoji: React.FC<ResponseIconProps> = (props) => {
   const { answerIsCorrect } = props;
 
   return (

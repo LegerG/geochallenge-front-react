@@ -5,4 +5,6 @@ export * from "./LanguageButtonMenu";
 export * from "./MiniQuiz";
 export * from "./GameStatistic";
 export * from "./AnswerPopover";
-export * from "./ResponseIcon";
+export * from "./ResponseEmoji";
+export * from "./ResultsPopover";
+export * from "./PopoverWrapper";
