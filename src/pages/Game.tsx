@@ -1,4 +1,3 @@
-import { AnchorSharp } from "@mui/icons-material";
 import {
   Autocomplete,
   TextField,
@@ -20,7 +19,6 @@ import { TerritoryName } from "../models/country";
 import {
   useGetNewGameQuery,
   useGetTerritoryNamesQuery,
-  useGetTrainingGameQuery,
 } from "../utils/territory.api";
 import { ROOT_URL } from "../utils/urls";
 
@@ -35,9 +33,7 @@ export const Game: React.FC = () => {
 
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
-  const gameResult = useGetTrainingGameQuery({
-    size: 1,
-  });
+  const gameResult = useGetNewGameQuery();
   const namesResult = useGetTerritoryNamesQuery({ lang: i18n.language });
 
   const handleAnswer = (_, value: TerritoryName | null) => {

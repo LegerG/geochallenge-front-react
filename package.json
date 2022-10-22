@@ -11,7 +11,9 @@
     "@types/node": "^16.11.66",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
+    "compression": "^1.7.4",
     "dotenv": "^16.0.3",
+    "express": "^4.18.2",
     "i18next": "^21.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -30,10 +32,12 @@
     "ts-loader": "^9.4.1",
     "typescript": "^4.8.4",
     "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.11.1"
+    "webpack-dev-server": "^4.11.1",
+    "webpack-merge": "^5.8.0"
   },
   "scripts": {
-    "start": "npx webpack serve --config webpack.config.local.js --env .env"
+    "start": "npx webpack serve --config config/webpack.local.js --env .env",
+    "build": "npx webpack --config config/webpack.production.js --env .env"
   },
   "eslintConfig": {
     "extends": [
