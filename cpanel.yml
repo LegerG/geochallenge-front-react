@@ -1,4 +1,4 @@
 ---
 deployment:
   tasks:
-    -
+    - /bin/bash /home/legw3018/repositories/geochallenge-front-react.git/script/run.sh first_steps geochallenge-front-react
