@@ -3,7 +3,7 @@
 user="legw3018"
 home="/home/$user"
 interpreter="nodejs"
-version=""
+version="14.20"
 app_name="$2"
 domain="flagle.gwenael-leger.fr"
 app_root="$home/$app_name"
