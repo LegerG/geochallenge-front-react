@@ -37,9 +37,9 @@ create_app() {
         --domain "$domain" \
         --app-uri "" \
         --version "$version" \
-        --startup-file "geochallenge/wsgi.py" \
         --passenger-log-file "$home/logs/$app_name/passenger.log" \
-        --entry-point "application"
+        --startup-file "src/server.js"
+
     check_result "Failed to create app"
 }
 
