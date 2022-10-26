@@ -29,7 +29,7 @@ export const territoryApi = createApi({
       query: () => ({
         method: "GET",
         url: `/api/territory`,
-        params: { size: 1 },
+        params: { size: 50 },
       }),
     }),
     getTrainingGame: builder.query<Territory[], CountryParams>({
