@@ -3,6 +3,7 @@ import { Button, Grid } from "@mui/material";
 import { MiniQuiz } from "../components";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import PublicIcon from "@mui/icons-material/Public";
 
 export const Home: React.FC = () => {
   const { t } = useTranslation();
@@ -22,7 +23,13 @@ export const Home: React.FC = () => {
           navigate("/game");
         }}
       >
-        <Button variant="contained" color="primary">
+        <Button
+          variant="contained"
+          color="primary"
+          size="large"
+          startIcon={<PublicIcon />}
+          endIcon={<PublicIcon />}
+        >
           {t("app.newGame")}
         </Button>
       </Grid>

@@ -17,7 +17,7 @@ import {
 } from "../components";
 import { TerritoryName } from "../models/country";
 import {
-  useGetNewGameQuery,
+  useLazyGetNewGameQuery,
   useGetTerritoryNamesQuery,
 } from "../utils/territory.api";
 import { ROOT_URL } from "../utils/urls";
@@ -33,8 +33,12 @@ export const Game: React.FC = () => {
 
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
-  const gameResult = useGetNewGameQuery();
+  const [trigger, gameResult] = useLazyGetNewGameQuery();
   const namesResult = useGetTerritoryNamesQuery({ lang: i18n.language });
+
+  React.useEffect(() => {
+    trigger();
+  }, []);
 
   const handleAnswer = (_, value: TerritoryName | null) => {
     if (!gameResult.data || !value) {
