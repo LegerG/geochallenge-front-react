@@ -1,6 +1,7 @@
 // Need to use the React-specific entry point to allow generating React hooks
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Territory, TerritoryName } from "../models/country";
+import { shuffleArray } from "./arrayTools";
 
 interface TerritoryNamesParams {
   lang: string;
@@ -31,6 +32,7 @@ export const territoryApi = createApi({
         url: `/api/territory`,
         params: { size: 50, group: "un" },
       }),
+      transformResponse: (response: Territory[]) => shuffleArray(response),
     }),
     getTrainingGame: builder.query<Territory[], CountryParams>({
       query: ({ group, size }) => ({
@@ -38,6 +40,7 @@ export const territoryApi = createApi({
         url: `/api/territory`,
         params: { group, size },
       }),
+      transformResponse: (response: Territory[]) => shuffleArray(response),
     }),
   }),
 });

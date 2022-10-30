@@ -4,14 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useGetTerritoryNamesQuery } from "../utils/territory.api";
 import { FlagImage } from "./";
 import { TerritoryName } from "../models/country";
-
-const getRandomElement = <T extends unknown>(array: T[]): T => {
-  return array[Math.floor(Math.random() * array.length)];
-};
-
-const shuffleArray = <T extends unknown>(array: T[]): T[] => {
-  return [...array].sort(() => Math.random() - 0.5);
-};
+import { getRandomElement } from "../utils/arrayTools";
 
 const getButtonColor = (
   buttonValue: TerritoryName,
@@ -32,6 +25,7 @@ export const MiniQuiz: React.FC = () => {
   const { t, i18n } = useTranslation();
   const { data } = useGetTerritoryNamesQuery({
     lang: i18n.language,
+    group: "un", // United Nations code
   });
   const [choices, setChoices] = React.useState<TerritoryName[]>([]);
   const [correctAnswer, setCorrectAnswer] = React.useState<TerritoryName>();
@@ -41,7 +35,7 @@ export const MiniQuiz: React.FC = () => {
 
   const resetMiniQuiz = () => {
     if (data) {
-      let choices = shuffleArray(data).slice(0, 3);
+      let choices = data.slice(0, 3);
       setChoices(choices);
       setCorrectAnswer(getRandomElement(choices));
     }
