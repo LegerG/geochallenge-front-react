@@ -26,15 +26,7 @@ export const territoryApi = createApi({
         params: { lang, group },
       }),
     }),
-    getNewGame: builder.query<Territory[], void>({
-      query: () => ({
-        method: "GET",
-        url: `/api/territory`,
-        params: { size: 50, group: "un" },
-      }),
-      transformResponse: (response: Territory[]) => shuffleArray(response),
-    }),
-    getTrainingGame: builder.query<Territory[], CountryParams>({
+    getGame: builder.query<Territory[], CountryParams>({
       query: ({ group, size }) => ({
         method: "GET",
         url: `/api/territory`,
@@ -53,7 +45,6 @@ export const territoryApi = createApi({
 
 export const {
   useGetTerritoryNamesQuery,
-  useLazyGetNewGameQuery,
-  useGetTrainingGameQuery,
+  useLazyGetGameQuery,
   useGetTerritoryGroupQuery,
 } = territoryApi;

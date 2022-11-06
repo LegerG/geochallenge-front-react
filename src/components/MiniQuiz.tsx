@@ -5,6 +5,7 @@ import { useGetTerritoryNamesQuery } from "../utils/territory.api";
 import { FlagImage } from "./";
 import { TerritoryName } from "../models/country";
 import { getRandomElement } from "../utils/arrayTools";
+import { UN_CODE } from "../pages";
 
 const getButtonColor = (
   buttonValue: TerritoryName,
@@ -25,7 +26,7 @@ export function MiniQuiz() {
   const { t, i18n } = useTranslation();
   const { data } = useGetTerritoryNamesQuery({
     lang: i18n.language,
-    group: "un", // United Nations code
+    group: UN_CODE,
   });
   const [choices, setChoices] = React.useState<TerritoryName[]>([]);
   const [correctAnswer, setCorrectAnswer] = React.useState<TerritoryName>();

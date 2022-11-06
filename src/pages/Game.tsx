@@ -1,11 +1,4 @@
-import {
-  Autocomplete,
-  TextField,
-  Box,
-  CircularProgress,
-  Grid,
-  Button,
-} from "@mui/material";
+import { Box, CircularProgress, Grid, Button } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
@@ -14,13 +7,16 @@ import {
   GameStatistic,
   AnswerPopover as AnswerPopover,
   ResultsPopover,
+  CountrySearch,
 } from "../components";
 import { TerritoryName } from "../models/country";
 import {
-  useLazyGetNewGameQuery,
+  useLazyGetGameQuery,
   useGetTerritoryNamesQuery,
 } from "../utils/territory.api";
 import { ROOT_URL } from "../utils/urls";
+
+export const UN_CODE = "gr_un";
 
 export function Game() {
   const [index, setIndex] = React.useState(0);
@@ -28,16 +24,18 @@ export function Game() {
   const [wrongAnswers, setWrongAnswers] = React.useState(0);
   const [currentAnswerIsCorrect, setCurrentAnswerIsCorrect] =
     React.useState<boolean>();
-  const [value, setValue] = React.useState<string>("");
   const [isGameEnded, setIsGameEnded] = React.useState(false);
 
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
-  const [trigger, gameResult] = useLazyGetNewGameQuery();
-  const namesResult = useGetTerritoryNamesQuery({ lang: i18n.language });
+  const [trigger, gameResult] = useLazyGetGameQuery();
+  const namesResult = useGetTerritoryNamesQuery({
+    lang: i18n.language,
+    group: UN_CODE,
+  });
 
   React.useEffect(() => {
-    trigger();
+    trigger({ group: UN_CODE });
   }, []);
 
   const handleAnswer = (_, value: TerritoryName | null) => {
@@ -56,7 +54,6 @@ export function Game() {
     setTimeout(() => {
       if (index < gameResult?.data?.length - 1) {
         setIndex(index + 1);
-        setValue("");
         setCurrentAnswerIsCorrect(undefined);
         return;
       }
@@ -119,38 +116,9 @@ export function Game() {
               {t("game.comebackHome")}
             </Button>
           ) : (
-            <Autocomplete
-              options={namesResult.data}
-              renderOption={(props, option) => (
-                <li {...props}>{option.name}</li>
-              )}
-              getOptionLabel={(option) => option.name}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label={t("game.countrySearch")}
-                  variant="outlined"
-                  autoFocus
-                  InputProps={{
-                    ...params.InputProps,
-                    type: "search",
-                    onInput(event: React.ChangeEvent<HTMLInputElement>) {
-                      if (event) {
-                        setValue(event.target.value);
-                      }
-                    },
-                  }}
-                />
-              )}
-              autoComplete
-              inputValue={value}
+            <CountrySearch
+              names={namesResult.data ?? []}
               onChange={handleAnswer}
-              sx={{ mt: 2 }}
-              autoSelect
-              fullWidth
-              autoHighlight
-              clearIcon={null}
-              clearOnEscape
             />
           )}
         </div>
