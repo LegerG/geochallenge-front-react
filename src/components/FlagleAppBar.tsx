@@ -32,7 +32,7 @@ import { ABOUT_URL, GAME_URL, ROOT_URL } from "../utils/urls";
 import { useTranslation } from "react-i18next";
 import { LanguageButtonMenu } from "./LanguageButtonMenu";
 
-export const FlagleAppBar: React.FC = () => {
+export function FlagleAppBar() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -101,4 +101,4 @@ export const FlagleAppBar: React.FC = () => {
       </Drawer>
     </AppBar>
   );
-};
+}

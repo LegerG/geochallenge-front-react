@@ -8,7 +8,7 @@ interface GameStatisticProps {
   totalAnswer?: number;
 }
 
-export const GameStatistic: React.FC<GameStatisticProps> = (props) => {
+export function GameStatistic(props: GameStatisticProps) {
   const {
     correctAnswers,
     wrongAnswers,
@@ -36,4 +36,4 @@ export const GameStatistic: React.FC<GameStatisticProps> = (props) => {
       </Typography>
     </Grid>
   );
-};
+}

@@ -22,7 +22,7 @@ import {
 } from "../utils/territory.api";
 import { ROOT_URL } from "../utils/urls";
 
-export const Game: React.FC = () => {
+export function Game() {
   const [index, setIndex] = React.useState(0);
   const [correctAnswers, setCorrectAnswers] = React.useState(0);
   const [wrongAnswers, setWrongAnswers] = React.useState(0);
@@ -98,7 +98,8 @@ export const Game: React.FC = () => {
                 <AnswerPopover
                   answerValue={
                     namesResult.data.find(
-                      (n) => n.code === gameResult?.data[index].code
+                      (tn: TerritoryName) =>
+                        tn.code === gameResult?.data[index].code
                     )?.name ?? ""
                   }
                   answerIsCorrect={currentAnswerIsCorrect ?? false}
@@ -156,4 +157,4 @@ export const Game: React.FC = () => {
       )}
     </Box>
   );
-};
+}

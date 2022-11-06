@@ -3,8 +3,15 @@ export interface TerritoryName {
   name: string;
 }
 
-export interface Territory {
+interface TerritoryBase {
   code: string;
   wikipedia_link: string;
+}
+
+export interface Territory extends TerritoryBase {
   groups: string[];
+}
+
+export interface TerritoryGroup extends TerritoryBase {
+  territories: string[];
 }

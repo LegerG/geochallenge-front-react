@@ -5,10 +5,10 @@ interface ResponseIconProps {
   answerIsCorrect: boolean;
 }
 
-export const ResponseEmoji: React.FC<ResponseIconProps> = (props) => {
+export function ResponseEmoji(props: ResponseIconProps) {
   const { answerIsCorrect } = props;
 
   return (
     <Typography variant="body1">{answerIsCorrect ? "🎉" : "❌"}</Typography>
   );
-};
+}

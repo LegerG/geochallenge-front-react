@@ -8,7 +8,7 @@ interface AnswerPopoverProps {
   answerIsCorrect: boolean;
 }
 
-export const AnswerPopover: React.FC<AnswerPopoverProps> = (props) => {
+export function AnswerPopover(props: AnswerPopoverProps) {
   const { answerValue, answerIsCorrect } = props;
 
   return (
@@ -39,4 +39,4 @@ export const AnswerPopover: React.FC<AnswerPopoverProps> = (props) => {
       </Box>
     </PopoverWrapper>
   );
-};
+}

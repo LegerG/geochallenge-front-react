@@ -5,7 +5,7 @@ import App from "../App";
 import { GAME_URL, HOME_URL, ROOT_URL, ABOUT_URL } from "../utils/urls";
 import { About } from "../pages/About";
 
-export const FlagleRouter: React.FC = () => {
+export function FlagleRouter() {
   const router = createBrowserRouter([
     {
       path: ROOT_URL,
@@ -32,4 +32,4 @@ export const FlagleRouter: React.FC = () => {
   ]);
 
   return <RouterProvider router={router} />;
-};
+}

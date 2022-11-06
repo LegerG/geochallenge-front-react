@@ -8,7 +8,7 @@ interface ResultsPopoverProps {
   wrongAnswers: number;
 }
 
-export const ResultsPopover: React.FC<ResultsPopoverProps> = (props) => {
+export function ResultsPopover(props: ResultsPopoverProps) {
   const { correctAnswers, wrongAnswers } = props;
 
   const { t } = useTranslation();
@@ -39,4 +39,4 @@ export const ResultsPopover: React.FC<ResultsPopoverProps> = (props) => {
       </Typography>
     </PopoverWrapper>
   );
-};
+}

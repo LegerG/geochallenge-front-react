@@ -9,7 +9,7 @@ interface FlagImageProps {
   popoverOpen?: boolean;
 }
 
-export const FlagImage: React.FC<FlagImageProps> = (props) => {
+export function FlagImage(props: FlagImageProps) {
   const { code, width = 640, popoverOpen, popoverElement } = props;
 
   const imgStyle = {
@@ -49,4 +49,4 @@ export const FlagImage: React.FC<FlagImageProps> = (props) => {
       ) : null}
     </Box>
   );
-};
+}

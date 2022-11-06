@@ -21,7 +21,7 @@ const getButtonColor = (
   return "error";
 };
 
-export const MiniQuiz: React.FC = () => {
+export function MiniQuiz() {
   const { t, i18n } = useTranslation();
   const { data } = useGetTerritoryNamesQuery({
     lang: i18n.language,
@@ -111,4 +111,4 @@ export const MiniQuiz: React.FC = () => {
       </Box>
     </Box>
   );
-};
+}

@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
-export const About: React.FC = () => {
+export function About() {
   const { t } = useTranslation();
 
   return (
@@ -23,4 +23,4 @@ export const About: React.FC = () => {
       </a>
     </Box>
   );
-};
+}

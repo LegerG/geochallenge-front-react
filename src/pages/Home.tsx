@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import PublicIcon from "@mui/icons-material/Public";
 
-export const Home: React.FC = () => {
+export function Home() {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -35,4 +35,4 @@ export const Home: React.FC = () => {
       </Grid>
     </Grid>
   );
-};
+}

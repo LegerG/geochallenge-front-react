@@ -3,7 +3,7 @@ import { Button, Menu, MenuItem } from "@mui/material";
 import { Language as LanguageIcon } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
 
-export const LanguageButtonMenu: React.FC = () => {
+export function LanguageButtonMenu() {
   const [buttonAnchor, setButtonAnchor] = React.useState<null | HTMLElement>(
     null
   );
@@ -58,4 +58,4 @@ export const LanguageButtonMenu: React.FC = () => {
       </Menu>
     </div>
   );
-};
+}

@@ -5,7 +5,7 @@ interface PopoverWrapperProps {
   children?: React.ReactNode;
 }
 
-export const PopoverWrapper: React.FC<PopoverWrapperProps> = (props) => {
+export function PopoverWrapper(props: PopoverWrapperProps) {
   const { children } = props;
 
   return (
@@ -22,4 +22,4 @@ export const PopoverWrapper: React.FC<PopoverWrapperProps> = (props) => {
       {children}
     </Box>
   );
-};
+}
