@@ -80,8 +80,7 @@ install_package() {
     cloudlinux-selector install-modules --json \
         --interpreter "$interpreter" \
         --user "$user" \
-        --app-root "$app_root" \
-        --requirements-file requirements.txt
+        --app-root "$app_root"
 
     check_result "Failed to install package"
 }
@@ -93,7 +92,7 @@ build_app() {
         --interpreter "$interpreter" \
         --user "$user" \
         --app-root "$app_root" \
-         --script-name build
+        --script-name build
 
     check_result "Failed to build app"
 }
