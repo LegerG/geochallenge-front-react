@@ -30,14 +30,14 @@ export function FlagImage(props: FlagImageProps) {
         bgcolor: "grey.300",
       }}
     >
-      {!code ? <Skeleton sx={imgStyle} variant="rectangular" /> : null}
-      {!code ? null : (
+      {!code && <Skeleton sx={imgStyle} variant="rectangular" />}
+      {code && (
         <img
           style={imgStyle}
           src={`https://flagcdn.com/w${width}/${code}.png`}
         />
       )}
-      {popoverOpen ? (
+      {popoverOpen && (
         <Grid
           sx={{ ...imgStyle, zIndex: 1, display: "flex" }}
           container
@@ -46,7 +46,7 @@ export function FlagImage(props: FlagImageProps) {
         >
           {popoverElement}
         </Grid>
-      ) : null}
+      )}
     </Box>
   );
 }
